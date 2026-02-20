@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Link Shortcut",
+  "version": "1.0",
+  "commands": {
+    "insert-link": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K"
+      },
+      "description": "Insert hyperlink"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting"]
+}

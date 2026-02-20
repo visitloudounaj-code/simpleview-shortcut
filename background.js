@@ -1,0 +1,13 @@
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "insert-link") {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        func: () => {
+          const linkBtn = document.querySelector('.cke_button__linklookup_button');
+          if (linkBtn) linkBtn.click();
+        }
+      });
+    });
+  }
+});

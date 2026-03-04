@@ -1,14 +1,14 @@
-# Chrome Link Shortcut Extension
+# SimpleView CMS Keyboard Shortcuts Extension
 
-A lightweight Chrome extension that adds a keyboard shortcut to open the hyperlink dialog in SimpleView CMS's CKEditor text editor.
+A lightweight Chrome extension that adds keyboard shortcuts to open the hyperlink and image dialogs in SimpleView CMS's CKEditor text editor.
 
 ## The Problem
 
-SimpleView CMS uses a custom CKEditor plugin for inserting hyperlinks that doesn't respond to the standard `Ctrl+K` shortcut. Clicking the link button in the toolbar every time is tedious, so this extension maps it to a custom keyboard shortcut.
+SimpleView CMS uses a custom CKEditor plugin for inserting hyperlinks and images that doesn't respond to standard shortcuts like `Ctrl+K`. Clicking the toolbar buttons every time is tedious, so this extension maps them to custom keyboard shortcuts and automatically clicks through to the browse/upload dialog in one step.
 
 ## How It Works
 
-The extension listens for a keyboard shortcut and simulates a click on the CKEditor link button (`.cke_button__linklookup_button`) on the active tab, which opens the Link Properties dialog.
+The extension listens for keyboard shortcuts and simulates clicks on the CKEditor toolbar buttons on the active tab, then waits for the dialog to open and automatically clicks the browse button inside it — opening the full SimpleView link/image picker in one keypress.
 
 ## Installation
 
@@ -18,26 +18,41 @@ The extension listens for a keyboard shortcut and simulates a click on the CKEdi
 4. Click **Load unpacked**
 5. Select the folder containing these files
 
-## Usage
+## Shortcuts
 
-1. Click inside the CKEditor text area in SimpleView CMS
-2. Highlight the text you want to turn into a link
-3. Press your shortcut (default: `Ctrl+Shift+L`)
-4. The Link Properties dialog will open
+| Action | Default Shortcut |
+|--------|-----------------|
+| Insert Hyperlink | `Ctrl+Shift+K` |
+| Insert Image | `Ctrl+Shift+L` |
 
-## Changing the Shortcut
-
+### Changing Shortcuts
 1. Go to `chrome://extensions/shortcuts` in Chrome
-2. Find **Link Shortcut**
-3. Click the pencil icon and press your desired key combination
+2. Find **SimpleView CMS Keyboard Shortcuts**
+3. Click the pencil icon next to the shortcut you want to change
+4. Press your desired key combination
+
+> **Note:** Chrome built-in shortcuts like `Ctrl+K` cannot be overridden by extensions. Stick to `Ctrl+Shift+[key]` combos. Punctuation keys like semicolons are not supported by Chrome in manifest shortcuts.
+
+## Workflow
+
+**Inserting a Hyperlink:**
+1. Click inside the CKEditor text area
+2. Highlight the text you want to link
+3. Press `Ctrl+Shift+K`
+4. The Link Properties dialog opens and Browse is clicked automatically
+
+**Inserting an Image:**
+1. Click inside the CKEditor text area
+2. Place your cursor where you want the image
+3. Press `Ctrl+Shift+L`
+4. The Image dialog opens and Browse Server is clicked automatically
 
 ## Files
 
-- `manifest.json` — Chrome extension configuration
-- `background.js` — Service worker that listens for the shortcut and executes the click
+- `manifest.json` — Chrome extension configuration and shortcut definitions
+- `background.js` — Service worker that listens for shortcuts and executes the automation
 
 ## Notes
 
-- This extension is specifically built for **SimpleView CMS**
-- It targets the custom `linklookup` CKEditor plugin used by SimpleView
-- Chrome built-in shortcuts like `Ctrl+K` cannot be overridden, which is why a custom combo is used
+- Built specifically for **SimpleView CMS** with the custom `linklookup` CKEditor plugin
+- If shortcuts reset after reloading the extension, reassign them at `chrome://extensions/shortcuts`

@@ -4,12 +4,9 @@ chrome.commands.onCommand.addListener((command) => {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         func: () => {
-          // Step 1: Click the link button to open the dialog
           const linkBtn = document.querySelector('.cke_button__linklookup_button');
           if (linkBtn) {
             linkBtn.click();
-
-            // Step 2: Wait for the dialog to appear, then click Browse
             const interval = setInterval(() => {
               const browseBtn = document.querySelector('a[title="Browse"].cke_dialog_ui_button');
               if (browseBtn) {
@@ -17,8 +14,28 @@ chrome.commands.onCommand.addListener((command) => {
                 browseBtn.click();
               }
             }, 100);
+            setTimeout(() => clearInterval(interval), 5000);
+          }
+        }
+      });
+    });
+  }
 
-            // Stop trying after 5 seconds if dialog never appears
+  if (command === "insert-image") {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        func: () => {
+          const imageBtn = document.querySelector('.cke_button__image');
+          if (imageBtn) {
+            imageBtn.click();
+            const interval = setInterval(() => {
+              const browseBtn = document.querySelector('a[title="Browse Server"].cke_dialog_ui_button');
+              if (browseBtn) {
+                clearInterval(interval);
+                browseBtn.click();
+              }
+            }, 100);
             setTimeout(() => clearInterval(interval), 5000);
           }
         }

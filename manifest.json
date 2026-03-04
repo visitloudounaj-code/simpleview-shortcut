@@ -8,6 +8,12 @@
         "default": "Ctrl+Shift+K"
       },
       "description": "Insert hyperlink"
+    },
+    "insert-image": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "Insert image"
     }
   },
   "background": {

@@ -31,7 +31,7 @@ The extension listens for keyboard shortcuts and simulates clicks on the CKEdito
 3. Click the pencil icon next to the shortcut you want to change
 4. Press your desired key combination
 
-> **Note:** Chrome built-in shortcuts like `Ctrl+K` cannot be overridden by extensions. Stick to `Ctrl+Shift+[key]` combos. Punctuation keys like semicolons are not supported by Chrome in manifest shortcuts.
+> **Note:** Chrome built-in shortcuts like `Ctrl+K` cannot be overridden by extensions. Stick to `Ctrl+Shift+[key]` combos.
 
 ## Workflow
 
